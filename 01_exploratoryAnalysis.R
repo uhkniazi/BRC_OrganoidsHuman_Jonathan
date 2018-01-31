@@ -28,6 +28,7 @@ dim(dfData)
 colnames(dfData)
 str(dfCovariates)
 table(as.character(dfCovariates$SampleCode) %in% colnames(dfData))
+identical(as.character(dfCovariates$SampleCode), colnames(dfData))
 
 ## first normalise the data
 mData = as.matrix(dfData)
@@ -63,9 +64,8 @@ oDiag.2 = CDiagnosticPlots(log(mData+1), 'Original')
 # this can be any grouping/clustering in the data capture process
 # e.g. in this case it is different lanes/machines
 fBatch = factor(dfCovariates$PatientID)
-fBatch = factor(dfCovariates$Treatment)
-fBatch = factor(dfCovariates$Lane)
-fBatch = factor(dfCovariates$RunID)
+fBatch = factor(dfCovariates$CytokineExposure)
+fBatch = factor(dfCovariates$LaneNumber)
 
 ## compare the 2 methods using various plots
 par(mfrow=c(1,2))
